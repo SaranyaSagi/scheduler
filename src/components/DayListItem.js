@@ -31,3 +31,5 @@ export default function DayListItem(props) {
     </li>
   );
 }
+
+// could add selected={props.selected} after line 27
