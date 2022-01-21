@@ -9,7 +9,6 @@ export default function InterviewerList (props) {
   const parsedInterviewerListItem = interviewers.map((singleInterview) => {
     return (
       <InterviewerListItem
-        key={singleInterview.id}
         id={singleInterview.id}
         name={singleInterview.name}
         avatar={singleInterview.avatar}
