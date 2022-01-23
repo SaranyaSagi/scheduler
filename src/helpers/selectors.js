@@ -25,6 +25,17 @@ export function getAppointmentsForDay(state, day) {
   return appointmentsArr;
 }
 
+export function getInterviewersForDay(state, day) {
+
+  let interviewersArr = [];
+  state.days.map(daysObj => {
+    if (daysObj.name === day) {
+      interviewersArr = daysObj.appointments.map(x => state.appointments[x])
+    }
+  })
+  return interviewersArr;
+}
+
 export function getInterview(state, interview) {
   //return an object that contains the interview data when passed an obj that contains interviewer
   //interview[interviwer] = interview.interviwer[id]???
