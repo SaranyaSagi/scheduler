@@ -24,3 +24,24 @@ export function getAppointmentsForDay(state, day) {
   })
   return appointmentsArr;
 }
+
+export function getInterview(state, interview) {
+  //return an object that contains the interview data when passed an obj that contains interviewer
+  //interview[interviwer] = interview.interviwer[id]???
+  
+  let interviewersObj = state.interviewers
+  let result = {};
+
+  if (!interviewersObj || !interview) {
+    return null;
+  }
+
+  for (const key of Object.keys(interviewersObj)) {
+    let interviewer = interviewersObj[key];
+    if (interviewer.id === interview.interviewer) {
+      result["interviewer"] = interviewer;
+      result["student"] = interview.student;
+    }
+  }
+  return result;
+}
