@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 import "components/Application.scss";
 
 export default function Application(props) {
@@ -17,10 +17,6 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   });
-
-  // Accessing the selector function but passing in state.day instead of day because day is now in state
-  const dailyAppointments = getAppointmentsForDay(state, state.day)
-  
 
   const setDay = day => setState({ ...state, day });
 
@@ -37,12 +33,14 @@ export default function Application(props) {
     });
   }, [])
 
-  console.log(state.interviewers);
+  //console.log(state.interviewers);
+  // Accessing the selector function but passing in state.day instead of day because day is now in state
+  const dailyAppointments = getAppointmentsForDay(state, state.day)
 
   const appointment = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
-    //if (interview) {below return goes here}
+    //if (interview) {}
       return (
         <Appointment
           key={appointment.id}
