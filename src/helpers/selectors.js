@@ -30,7 +30,8 @@ export function getInterviewersForDay(state, day) {
   let interviewersArr = [];
   state.days.map(daysObj => {
     if (daysObj.name === day) {
-      interviewersArr = daysObj.appointments.map(x => state.appointments[x])
+      interviewersArr = daysObj.appointments.map(x => state.interviewers[x])
+      //if something breaks change abovet to state.appointments
     }
   })
   return interviewersArr;
