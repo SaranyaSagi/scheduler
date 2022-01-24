@@ -7,10 +7,6 @@ import "components/Application.scss";
 
 export default function Application(props) {
 
-  // const [day, setDay] = useState("Monday");
-  // const [days, setDays] = useState([]);
-  //The above two lines can be combined into state below
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -20,8 +16,30 @@ export default function Application(props) {
 
   const setDay = day => setState({ ...state, day });
 
-  //removed this before doing promise.all because setState should now be there
-  //const setDays = days => setState(prev => ({ ...prev, days }));
+  function bookInterview(id, interview) {
+    console.log("id: ", id, "interview: ", interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    // setState({
+    //   ...state,
+    //   appointments
+    // });
+
+  return axios
+      .put(`/api/appointments/${id}`, 
+      {interview : interview})
+      .then(() => {
+        setState({
+        ...state,
+        appointments
+      });})   
+  }
 
   useEffect(() => {
     Promise.all([
@@ -33,14 +51,12 @@ export default function Application(props) {
     });
   }, [])
 
-  //console.log(state.interviewers);
   // Accessing the selector function but passing in state.day instead of day because day is now in state
   const dailyAppointments = getAppointmentsForDay(state, state.day)
 
   const appointment = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day)
-    // console.log('interview', interview);
     
     //if (interview) {}
       return (
@@ -49,6 +65,7 @@ export default function Application(props) {
           interviewers={interviewers}
           {...appointment}
           interview={interview}
+          bookInterview={bookInterview}
         />
       ) 
     // else {
