@@ -47,12 +47,8 @@ export function getInterview(state, interview) {
     return null;
   }
 
-  for (const key of Object.keys(interviewersObj)) {
-    let interviewer = interviewersObj[key];
-    if (interviewer.id === interview.interviewer) {
-      result["interviewer"] = interviewer;
-      result["student"] = interview.student;
-    }
-  }
+  result = {
+    interviewer: state.interviewers[interview.interviewer],
+    student: interview.student}
   return result;
 }
