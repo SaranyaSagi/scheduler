@@ -12,8 +12,27 @@ const useApplicationData = () => {
 
   const setDay = day => setState({ ...state, day });
 
+  function updateSpots(id, isCreation) {
+    //getting the day
+    const day = state.days.find(day => day.appointments.includes(id));
+    
+    // isCreation is referring to the appointment creation, if booked -1, if cancelled +1
+    const newDay = {...day, spots: day.spots + (isCreation ? -1 : 1)}
+    
+    const newDaysArr = state.days.map((day)=> {
+      if (day.id === newDay.id) {
+        return newDay
+      } else {
+        return day
+      }
+    })
+
+    setState((prev) => ({...prev, days: newDaysArr}))
+  }
+
+
   function bookInterview(id, interview) {
-    //console.log("id: ", id, "interview: ", interview);
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -22,22 +41,18 @@ const useApplicationData = () => {
       ...state.appointments,
       [id]: appointment
     };
-    // setState({
-    //   ...state,
-    //   appointments
-    // });
 
   return axios
       .put(`/api/appointments/${id}`, 
       {interview : interview})
       .then(() => {
-        setState({
-        ...state,
-        appointments
-      });})   
+        setState((prev) => ({...prev ,appointments }));
+        updateSpots(id, true) 
+      })   
   }
 
   function cancelInterview(id) {
+
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -50,10 +65,9 @@ const useApplicationData = () => {
   return axios
       .delete(`/api/appointments/${id}`)
       .then(() => {
-        setState({
-        ...state,
-        appointments
-      });})
+      setState((prev) => ({...prev ,appointments}));
+      updateSpots(id, false)
+    })
   }
 
   useEffect(() => {
@@ -67,7 +81,6 @@ const useApplicationData = () => {
   }, [])
 
   return { state, setDay, bookInterview, cancelInterview };
-
 }
 
 export default useApplicationData;
