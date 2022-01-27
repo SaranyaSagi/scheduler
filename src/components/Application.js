@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-//import axios from "axios";
+import React from "react";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
@@ -8,6 +7,7 @@ import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
 
+  //From the imported custom hook object
   const {
     state,
     setDay,
@@ -15,9 +15,11 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
   
+  //using variable for selector to get appointments array
   const dailyAppointments = getAppointmentsForDay(state, state.day)
   
   const appointment = dailyAppointments.map((appointment) => {
+    //use getinterview selector to get object and getInterviewersForDay for array
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day)
     

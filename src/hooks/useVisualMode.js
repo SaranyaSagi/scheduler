@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function useVisualMode(initial) {
  const [mode, setMode] = useState(initial);
  const [history, setHistory] = useState([initial]);
  
+ //making sure to create copies through spread and new variables so not to alter original data. 
  function transition(newMode, replace = false) {
     if (!replace) {
       setMode(newMode)
@@ -19,6 +20,7 @@ export default function useVisualMode(initial) {
   setHistory(newHistory)
  }
 
+ //Pops last item and sets mode to last item
  function back() {
   if (history.length === 1) return;
   const updatedHistory = [...history]
@@ -29,24 +31,4 @@ export default function useVisualMode(initial) {
 
  return { mode, transition, back };
 }
-
-// export default function useVisualMode(initial) {
-//   const [mode, setMode] = useState(initial);
-//   const [history, setHistory] = useState([initial]);
-  
-//   function transition(newMode) {
-//     setMode(newMode)
-//     // shortcut to add newMode to last of array 
-//     setHistory([...history, newMode])
-//   }
- 
-//   function back() {
-//   //  const updatedHistory = [...history]
-//   //  updatedHistory.pop()
-//    setHistory(history.slice(-1))
-//    setMode(history.slice(-2, -1)[0])
-//   }
- 
-//   return { mode, transition, back };
-//  }
 

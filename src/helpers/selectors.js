@@ -1,19 +1,4 @@
-// function selectUserByName(state, name) {
-//   const filteredNames = state.users.filter(user => user.name === name);
-//   return filteredNames;
-// }
-
-// Same function as line 17 with forEach
-// export function getAppointmentsForDay(state, day) {
-//   let appointmentsArr = [];
-//   state.days.map(daysObj => {
-//     if (daysObj.name === day) {
-//       daysObj.appointments.forEach(apptId => appointmentsArr.push(state.appointments[apptId]))
-//     }
-//   })
-//   return appointmentsArr;
-// }
-
+//In this function mapping through days object and returning an array for appointment id.
 export function getAppointmentsForDay(state, day) {
 
   let appointmentsArr = [];
@@ -25,25 +10,25 @@ export function getAppointmentsForDay(state, day) {
   return appointmentsArr;
 }
 
+//In this function mapping through days object and returning an array for interviewers.
 export function getInterviewersForDay(state, day) {
 
   let interviewersArr = [];
   state.days.map(daysObj => {
     if (daysObj.name === day) {
-      interviewersArr = daysObj.appointments.map(x => state.interviewers[x])
-      //if something breaks change abovet to state.appointments
+      interviewersArr = daysObj.appointments.map(interviewData => state.interviewers[interviewData])
     }
   })
   return interviewersArr;
 }
 
+//returning an object that contains the interview data when passed an obj that contains interviewer
 export function getInterview(state, interview) {
-  //return an object that contains the interview data when passed an obj that contains interviewer
-  //interview[interviwer] = interview.interviwer[id]???
   
   let interviewersObj = state.interviewers
   let result = {};
 
+  //Very important, it has to return null if object or interview doesn't exist.
   if (!interviewersObj || !interview) {
     return null;
   }
@@ -51,5 +36,6 @@ export function getInterview(state, interview) {
   result = {
     interviewer: state.interviewers[interview.interviewer],
     student: interview.student}
+
   return result;
 }

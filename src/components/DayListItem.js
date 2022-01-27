@@ -5,6 +5,7 @@ import "components/DayListItem.scss";
 
 export default function DayListItem(props) {
   
+  //This function is needed to handle the different spots conditions and send appropriate message"
   const formatSpots = (spots) => {
     if (spots === 0) {
       return `no spots remaining`;
@@ -17,6 +18,7 @@ export default function DayListItem(props) {
     return `${spots} spots remaining`;
   }
   
+  //ClassNames library can be used where 1 out of 2 classes has to be selected.
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": (!props.spots)
@@ -32,5 +34,3 @@ export default function DayListItem(props) {
     </li>
   );
 }
-
-// could add selected={props.selected} after line 27

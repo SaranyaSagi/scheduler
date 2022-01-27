@@ -7,6 +7,7 @@ import "components/InterviewerList.scss";
 export default function InterviewerList (props) {
   const { interviewers, value, onChange } = props;
 
+  //pass this in to ul inside return section
   const parsedInterviewerListItem = interviewers.map((singleInterview) => {
     return (
       <InterviewerListItem
