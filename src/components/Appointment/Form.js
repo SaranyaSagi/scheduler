@@ -6,25 +6,27 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
-  console.log("===========>", props )
   
+  //reset the form using setState
   const reset = function() {
     setStudent("");
     setInterviewer("");
   }
 
+  //upon clicking cancel button reset function is triggered 
   const cancel = function() {
     reset();
     props.onCancel();
-    // should it be props.onCancel()
   }
 
   function validate() {
+    //Error validation to make sure a name exists before saving
     if (student === "") {
       setError("Student name cannot be blank");
       return;
     }
 
+    //Error validation to make sure an interviewer is selected before saving
     if (!interviewer) {
       setError("Must select an interviewer");
       return;
@@ -64,15 +66,3 @@ export default function Form(props) {
     </main>
   );
 }
-
-//Add this to body of form component
-// function validate() {
-//   if (name === "") {
-//     setError("Student name cannot be blank");
-//     return;
-//   }
-
-//   props.onSave(name, interviewer);
-// }
-
-//const [error, setError] = useState("");
