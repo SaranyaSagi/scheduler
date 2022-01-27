@@ -19,13 +19,16 @@ A modern client application using the React view library.
 
 ### ☑︎ Add appointment and update spots spontaneously
 #### API server gets updated so data is not lost upon refresh
-![Add appointments](https://github.com/SaranyaSagi/scheduler/blob/master/docs/Add_appt.gif?raw=true)
+![Add appointments](https://github.com/SaranyaSagi/scheduler/blob/master/docs/newAddAppt.gif?raw=true)
 
 ### ☑︎ Edit existing appointments
-![Edit appointments](https://github.com/SaranyaSagi/scheduler/blob/master/docs/Edit_appt.gif?raw=true)
+#### Old name and interviewer preselected before editing
+![Edit appointments](https://github.com/SaranyaSagi/scheduler/blob/master/docs/newEditappt.gif?raw=true)
 
-### ☑︎ Error handling or validation for name input with message 
-![Error hanldling](https://github.com/SaranyaSagi/scheduler/blob/master/docs/Error_handling.gif?raw=true)
+### ☑︎ Error handling or validation for name and interviewer
+#### Error message for empty name
+#### Error message if no interviewer selected
+![Error hanldling](https://github.com/SaranyaSagi/scheduler/blob/master/docs/newErrorHandling.gif?raw=true)
 
 ### ☑︎ Delete appointments with confirm/cancel options and updated spots
 ![Delete appointment](https://github.com/SaranyaSagi/scheduler/blob/master/docs/Delete_appt.gif?raw=true)
