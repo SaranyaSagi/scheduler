@@ -3,13 +3,13 @@
 # Summary
 
 A modern client application using the React view library.
-✅ Interviews can be booked between Monday and Friday.
-✅ Interviews are booked by typing in a student name and clicking on an interviewer from a list of available interviewers.
-✅ The application makes API requests to load and persist data.
-✅ Spots are updated on creation or deletion of appointment but not on edits. 
-✅ Deletions have confirm option 
-✅ Saving and deleting transitions included. 
-✅ Built in jest, storybook and cypresss cover unit, componenet and end2end testing respectively. 
+- ✅ Interviews can be booked between Monday and Friday.
+- ✅ Interviews are booked by typing in a student name and clicking on an interviewer from a list of available interviewers.
+- ✅ The application makes API requests to load and persist data.
+- ✅ Spots are updated on creation or deletion of appointment but not on edits. 
+- ✅ Deletions have confirm option 
+- ✅ Saving and deleting transitions included. 
+- ✅ Built in jest, storybook and cypresss cover unit, componenet and end2end testing respectively. 
 
 ## Final Product
 
@@ -18,6 +18,7 @@ A modern client application using the React view library.
 ![transitions](https://github.com/SaranyaSagi/scheduler/blob/master/docs/transitions.gif?raw=true)
 
 ### ☑︎ Add appointment and update spots spontaneously
+#### API server gets updated so data is not lost upon refresh
 ![Add appointments](https://github.com/SaranyaSagi/scheduler/blob/master/docs/Add_appt.gif?raw=true)
 
 ### ☑︎ Edit existing appointments
@@ -28,6 +29,9 @@ A modern client application using the React view library.
 
 ### ☑︎ Delete appointments with confirm/cancel options and updated spots
 ![Delete appointment](https://github.com/SaranyaSagi/scheduler/blob/master/docs/Delete_appt.gif?raw=true)
+
+### ☑︎ Error handling for deleting and saving when error with browser.
+![Error hanldling close]()
 
 ### ☑︎ Cypress End2End tests
 ![cypress](https://github.com/SaranyaSagi/scheduler/blob/master/docs/new_cypress.gif?raw=true)
