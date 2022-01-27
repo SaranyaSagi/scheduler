@@ -11,6 +11,7 @@ export default function InterviewerList (props) {
     return (
       <InterviewerListItem
         key={singleInterview.id}
+        id={singleInterview.id}
         name={singleInterview.name}
         avatar={singleInterview.avatar}
         selected={singleInterview.id === value}
