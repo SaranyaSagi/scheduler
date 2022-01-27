@@ -84,3 +84,35 @@ const useApplicationData = () => {
 }
 
 export default useApplicationData;
+
+//WEB SOCKET FIGURE OUT------------------------------------------
+//dispatch({ type: "updateInterview", value: appointments });
+  // useEffect(() => {
+
+  //   // dispatch({
+  //   //   type: "setData",
+  //   //   value: { days, appointments, interviewers }
+  //   // });
+
+  //   const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL)
+
+  //   socket.onopen = () => {
+  //     console.log("Web socket is now opened")
+  //     socket.send("ping");
+  //   }
+
+  //   socket.onmessage = eventData => {
+  //     const appointment = JSON.parse(eventData.data);
+  //     console.log(appointment)
+
+  //     const appointments = {
+  //       ...state.appointments,
+  //       [appointment.id]: appointment
+  //     };
+      
+  //     if (appointment.type === "SET_INTERVIEW") {
+  //       bookInterview(eventData.id, eventData.interview)
+  //     }
+
+  //   };
+  // }, [])
