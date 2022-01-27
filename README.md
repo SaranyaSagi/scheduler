@@ -30,7 +30,7 @@ A modern client application using the React view library.
 ### ☑︎ Delete appointments with confirm/cancel options and updated spots
 ![Delete appointment](https://github.com/SaranyaSagi/scheduler/blob/master/docs/Delete_appt.gif?raw=true)
 
-### ☑︎ Error handling for deleting and saving when error with browser.
+### ☑︎ Error handling when deleting and saving could not be performed.
 ![Error hanldling close](https://github.com/SaranyaSagi/scheduler/blob/master/docs/error_close.gif?raw=true)
 
 ### ☑︎ Cypress End2End tests
@@ -73,21 +73,17 @@ Install dependencies with `npm install`.
 - babel
 - node-sass
 
-
 ### Running Webpack Development Server
-
 ```sh
 npm start
 ```
 
 ### Running Jest Test Framework
-
 ```sh
 npm test
 ```
 
 ### Running Storybook Visual Testbed
-
 ```sh
 npm run storybook
 ```
