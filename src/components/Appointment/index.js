@@ -25,6 +25,7 @@ export default function Appointment(props) {
   const ERROR_SAVE = "ERROR_SAVE";
   const ERROR_DELETE = "ERROR_DELETE";
 
+  //Transition to show only if props.interview exists otherwise it should be empty
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
