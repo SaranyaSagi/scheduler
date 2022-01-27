@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+//Custom hook that is imported into application.js
 const useApplicationData = () => {
-  
+
+  // This is combining the state for all at once. 
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -12,6 +14,7 @@ const useApplicationData = () => {
 
   const setDay = day => setState({ ...state, day });
 
+  //By checking if a apppointment is booked or not using the boolean for isCreation, spots can be updated respectively
   function updateSpots(id, isCreation) {
     //getting the day
     const day = state.days.find(day => day.appointments.includes(id));
@@ -30,7 +33,7 @@ const useApplicationData = () => {
     setState((prev) => ({...prev, days: newDaysArr}))
   }
 
-
+  // this function gets called in appointment/index inside save and along with required transitions 
   function bookInterview(id, interview) {
 
     const appointment = {
@@ -42,15 +45,21 @@ const useApplicationData = () => {
       [id]: appointment
     };
 
+  //making a put request to server so that it can be updated there as well, update spots will be -1
   return axios
       .put(`/api/appointments/${id}`, 
       {interview : interview})
       .then(() => {
+        
         setState((prev) => ({...prev ,appointments }));
-        updateSpots(id, true) 
+        if (!state.appointments[id].interview) {
+          updateSpots(id, true) 
+        }
+        //console.log(appointments[id].interview); 
       })   
   }
 
+  //function that gets called inside handleDelete function in appointment/index 
   function cancelInterview(id) {
 
     const appointment = {
@@ -62,6 +71,7 @@ const useApplicationData = () => {
       [id]: appointment
     };
 
+  //make a delete request and update spots as +1
   return axios
       .delete(`/api/appointments/${id}`)
       .then(() => {
@@ -70,6 +80,8 @@ const useApplicationData = () => {
     })
   }
 
+  //Promise resolve that makes obtaining all the data in one line and setState
+  //prev important to avoid stale state. 
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -84,35 +96,3 @@ const useApplicationData = () => {
 }
 
 export default useApplicationData;
-
-//WEB SOCKET FIGURE OUT------------------------------------------
-//dispatch({ type: "updateInterview", value: appointments });
-  // useEffect(() => {
-
-  //   // dispatch({
-  //   //   type: "setData",
-  //   //   value: { days, appointments, interviewers }
-  //   // });
-
-  //   const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL)
-
-  //   socket.onopen = () => {
-  //     console.log("Web socket is now opened")
-  //     socket.send("ping");
-  //   }
-
-  //   socket.onmessage = eventData => {
-  //     const appointment = JSON.parse(eventData.data);
-  //     console.log(appointment)
-
-  //     const appointments = {
-  //       ...state.appointments,
-  //       [appointment.id]: appointment
-  //     };
-      
-  //     if (appointment.type === "SET_INTERVIEW") {
-  //       bookInterview(eventData.id, eventData.interview)
-  //     }
-
-  //   };
-  // }, [])
