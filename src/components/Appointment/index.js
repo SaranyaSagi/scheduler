@@ -29,6 +29,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  //handles save click, and transitions associted with it but some transitions also handled through MODE
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -39,18 +40,22 @@ export default function Appointment(props) {
    
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW))
+    //handle browser error, boolean is important, tested using node-env server(scheduler-api has built in function that takes care of this)
     .catch(error => transition(ERROR_SAVE, true))            
   }
 
+  //handles delete using cancelInterview and transitions but some transitions also handled through mode below
   function handleDelete() {
     
     transition(DELETING, true)
     
     props.cancelInterview(props.id)
     .then(() => transition(EMPTY))
+    //handle browser error, boolean is important, tested using node-env server(scheduler-api has built in function that takes care of this)
     .catch(error => transition(ERROR_DELETE, true))      
   }
 
+  //function to handle close clicks. 
   function errorClose () {
     back();
   }
