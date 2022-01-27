@@ -31,7 +31,7 @@ A modern client application using the React view library.
 ![Delete appointment](https://github.com/SaranyaSagi/scheduler/blob/master/docs/Delete_appt.gif?raw=true)
 
 ### ☑︎ Error handling for deleting and saving when error with browser.
-![Error hanldling close]()
+![Error hanldling close](https://github.com/SaranyaSagi/scheduler/blob/master/docs/error_close.gif?raw=true)
 
 ### ☑︎ Cypress End2End tests
 ![cypress](https://github.com/SaranyaSagi/scheduler/blob/master/docs/new_cypress.gif?raw=true)
