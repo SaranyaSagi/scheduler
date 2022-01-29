@@ -39,11 +39,15 @@ A modern client application using the React view library.
 ### ☑︎ Cypress End2End tests
 ![cypress](https://github.com/SaranyaSagi/scheduler/blob/master/docs/new_cypress.gif?raw=true)
 
-### ☑︎ Storybook component tests 
+### ☑︎ Storybook component, integration tests 
 ![storybook](https://github.com/SaranyaSagi/scheduler/blob/master/docs/storybook.gif?raw=true)
 
 ### ☑︎ Jest unit tests and Test coverage
 ![Test coverage](https://github.com/SaranyaSagi/scheduler/blob/master/docs/jest.png?raw=true)
+
+### ☑︎ Web sockets with real time updates 
+#### Add, edit, and delete appointments in real time without refresh
+![Web Sockets]()
 
 ## Dependencies
 - axios: "^0.25.0",
