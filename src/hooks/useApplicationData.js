@@ -12,6 +12,9 @@ const useApplicationData = () => {
     interviewers: {}
   });
 
+  //Add websocket to state
+  const [socket] = useState(new WebSocket(process.env.REACT_APP_WEBSOCKET_URL))
+
   const setDay = day => setState({ ...state, day });
 
   //By checking if a apppointment is booked or not using the boolean for isCreation, spots can be updated respectively
@@ -90,6 +93,29 @@ const useApplicationData = () => {
     ]).then((all) => {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
     });
+  }, [])
+
+  //new useEffect just for websocket
+  useEffect(() => {
+
+    socket.onmessage = event => {
+      const data = JSON.parse(event.data);
+
+      //important to set state to prev so it doesn't go stale
+      if (typeof data === "object" && data.type === "SET_INTERVIEW") {
+        setState((prev) => {
+          const appointment = {
+            ...prev.appointments[data.id],
+            interview: data.interview
+          };
+          const appointments = {
+            ...prev.appointments,
+            [data.id]: appointment
+          };
+          return {...prev ,appointments}
+        });
+      }
+    };
   }, [])
 
   return { state, setDay, bookInterview, cancelInterview };
