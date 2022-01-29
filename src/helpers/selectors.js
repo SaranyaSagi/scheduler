@@ -13,13 +13,19 @@ export function getAppointmentsForDay(state, day) {
 //In this function mapping through days object and returning an array for interviewers.
 export function getInterviewersForDay(state, day) {
 
-  let interviewersArr = [];
-  state.days.map(daysObj => {
-    if (daysObj.name === day) {
-      interviewersArr = daysObj.appointments.map(interviewData => state.interviewers[interviewData])
-    }
-  })
-  return interviewersArr;
+  const found = state.days.find(d => day === d.name);
+
+  // This helps with dealing the 6th hidden undefined slot and doesnt replace the whole array with undefined. 
+  if (state.days.length === 0 || found === undefined) return [];
+
+  return found.interviewers.map(id => state.interviewers[id]);
+
+  //This original below function is returning undefined for Wed, Thurs, Fri
+  // let interviewersArr = [];
+  // state.days.map(daysObj => {if (daysObj.name === day) {
+  //     interviewersArr = daysObj.appointments.map(interviewData => state.interviewers[interviewData])}
+  // })
+  // return interviewersArr;
 }
 
 //returning an object that contains the interview data when passed an obj that contains interviewer
