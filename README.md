@@ -2,7 +2,7 @@
 
 # Summary
 
-A modern client application using the React view library.
+A modern client single page application using the React view library.
 - ✅ Interviews can be booked between Monday and Friday.
 - ✅ Interviews are booked by typing in a student name and clicking on an interviewer from a list of available interviewers.
 - ✅ The application makes API requests to load and persist data.
@@ -10,6 +10,7 @@ A modern client application using the React view library.
 - ✅ Deletions have confirm option 
 - ✅ Saving and deleting transitions included. 
 - ✅ Built in jest, storybook and cypresss cover unit, componenet and end2end testing respectively. 
+- ✅ Web sockets implementation allowing real time updates when appointments are added, edited or deleted. 
 
 ## Final Product
 
