@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Header from "./Header";
 import Show from "./Show";
@@ -29,6 +29,17 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
+  //Adding this to make websockets transitions work 
+  //specifically to handle book interview and cancel interview.
+  useEffect(() => {
+    if (props.interview && mode === EMPTY) {
+     transition(SHOW);
+    }
+    if (props.interview === null && mode === SHOW) {
+     transition(EMPTY);
+    }
+   }, [props.interview, transition, mode]);
 
   //handles save click, and transitions associted with it but some transitions also handled through MODE
   function save(name, interviewer) {
@@ -66,7 +77,7 @@ export default function Appointment(props) {
     <article className="appointment">
       <Header time={props.time}/>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && (
+      {mode === SHOW && props.interview && (
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
@@ -99,5 +110,3 @@ export default function Appointment(props) {
     </article>
   ); 
 }
-
-//{props.time ? `Appointment at ${props.time}` : "No Appointments" }
