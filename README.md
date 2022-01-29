@@ -47,7 +47,7 @@ A modern client application using the React view library.
 
 ### ☑︎ Web sockets with real time updates 
 #### Add, edit, and delete appointments in real time without refresh
-![Web Sockets]()
+![Web Sockets](https://github.com/SaranyaSagi/scheduler/blob/master/docs/WebSockets.gif?raw=true)
 
 ## Dependencies
 - axios: "^0.25.0",
