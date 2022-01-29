@@ -98,10 +98,12 @@ const useApplicationData = () => {
   //new useEffect just for websocket
   useEffect(() => {
 
+    //listener, data has to be parsed, otherwise will get wrong data
     socket.onmessage = event => {
       const data = JSON.parse(event.data);
 
       //important to set state to prev so it doesn't go stale
+      // types has to match set interview based on the data that it sends
       if (typeof data === "object" && data.type === "SET_INTERVIEW") {
         setState((prev) => {
           const appointment = {
