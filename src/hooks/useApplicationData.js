@@ -53,12 +53,10 @@ const useApplicationData = () => {
       .put(`/api/appointments/${id}`, 
       {interview : interview})
       .then(() => {
-        
         setState((prev) => ({...prev ,appointments }));
         if (!state.appointments[id].interview) {
           updateSpots(id, true) 
         }
-        //console.log(appointments[id].interview); 
       })   
   }
 
@@ -114,6 +112,7 @@ const useApplicationData = () => {
             ...prev.appointments,
             [data.id]: appointment
           };
+
           return {...prev ,appointments}
         });
       }
