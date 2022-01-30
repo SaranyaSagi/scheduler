@@ -15,10 +15,7 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
   
-  //using variable for selector to get appointments array
-  const dailyAppointments = getAppointmentsForDay(state, state.day)
-  
-  const appointment = dailyAppointments.map((appointment) => {
+  const appointment = (getAppointmentsForDay(state, state.day)).map((appointment) => {
     //use getinterview selector to get object and getInterviewersForDay for array
     const interview = getInterview(state, appointment.interview);
     const interviewers = getInterviewersForDay(state, state.day)
