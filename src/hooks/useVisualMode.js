@@ -3,9 +3,11 @@ import { useState } from 'react';
 export default function useVisualMode(initial) {
 	const [history, setHistory] = useState([initial]);
 
+  //making sure to create copies through spread and new variables so not to alter original data
 	const transition = (newMode, replace = false) => {
 		setHistory((prev) => {
 			const newHistory = [...prev];
+      // only popping if replace is true otherwise its default false state. 
 			if (replace) {
 				newHistory.pop();
 			}
@@ -15,6 +17,7 @@ export default function useVisualMode(initial) {
 		});
 	};
 
+  //Pops last item and sets mode to last item
 	const back = () => {
 		setHistory((prev) => {
 			const newHistory = [...prev];
@@ -28,7 +31,7 @@ export default function useVisualMode(initial) {
 			return newHistory;
 		});
 	};
-
+  //setting mode to always be the last item in history
 	return { mode: history[history.length - 1], transition, back };
 }
 
